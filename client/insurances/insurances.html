@@ -1,0 +1,36 @@
+<template name="insurances">
+    <h4>You have {{count}} insurances</h4>
+    <table class="mdl-data-table mdl-js-data-table">
+        <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">Brand</th>
+            <th>Date</th>
+            <th class="mdl-data-table__cell--non-numeric">Duration</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each insurances}}
+            {{>rowInsurance}}
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name="rowInsurance">
+    <tr>
+        <td class="mdl-data-table__cell--non-numeric">{{name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{brand}}</td>
+        <td>{{date}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{>progressBar progress=duration}}</td>
+    </tr>
+</template>
+
+<template name="progressBar">
+    <div id="p1" class="mdl-progress mdl-js-progress"></div>
+    <script>
+        document.querySelector('#p1').addEventListener('mdl-componentupgraded', function () {
+            this.MaterialProgress.setProgress({{progress}});
+        });
+    </script>
+</template>

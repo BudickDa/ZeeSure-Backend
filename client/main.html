@@ -1,0 +1,66 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZeeSure - Trust saves money</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Web Starter Kit">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+    <meta name="theme-color" content="#2F3BA2">
+</head>
+
+<template name="main">
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout--fixed-header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">ZeeSure</span>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation">
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">ZeeSure</span>
+            <nav class="mdl-navigation">
+                {{>menu}}
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                {{>Template.dynamic template=content}}
+            </div>
+        </main>
+    </div>
+</template>
+
+<template name="menu">
+    <a class="mdl-navigation__link" href="/scanner">Scanner</a>
+    <a class="mdl-navigation__link" href="/insurances">Insurances</a>
+    <a class="mdl-navigation__link" href="/invest">Invest</a>
+    <a class="mdl-navigation__link" href="/settings">Settings</a>
+</template>
+
+<template name="loading">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</template>
