@@ -1,5 +1,5 @@
-<template name="insurances">
-    <h4>You have {{count}} insurances</h4>
+<template name="investements">
+    <h4>You have {{count}} investements</h4>
     <table class="mdl-data-table mdl-js-data-table">
         <thead>
         <tr>
@@ -12,13 +12,13 @@
         </thead>
         <tbody>
         {{#each insurances}}
-            {{>rowInsurance}}
+            {{>rowInvestment}}
         {{/each}}
         </tbody>
     </table>
 </template>
 
-<template name="rowInsurance">
+<template name="rowInvestment">
     <tr>
         <td class="mdl-data-table__cell--non-numeric">{{name}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{brand}}</td>
@@ -26,13 +26,4 @@
         <td class="mdl-data-table__cell--non-numeric">{{>progressBar progress=duration}}</td>
         <td>{{amount}}</td>
     </tr>
-</template>
-
-<template name="progressBar">
-    <div id="p1" class="mdl-progress mdl-js-progress"></div>
-    <script>
-        document.querySelector('#p1').addEventListener('mdl-componentupgraded', function () {
-            this.MaterialProgress.setProgress({{progress}});
-        });
-    </script>
 </template>

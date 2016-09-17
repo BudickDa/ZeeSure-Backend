@@ -40,6 +40,17 @@ FlowRouter.route('/insurances', {
     }
 });
 
+FlowRouter.route('/investments', {
+    triggersEnter: [function(context, redirect) {
+        if(Meteor.userId()===null) {
+            redirect('/login');
+        }
+    }],
+    action: function(params, queryParams) {
+        BlazeLayout.render('main', {content: 'investments'});
+    }
+});
+
 FlowRouter.route('/invest', {
     triggersEnter: [function(context, redirect) {
         if(Meteor.userId()===null) {
