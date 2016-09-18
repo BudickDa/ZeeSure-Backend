@@ -3,6 +3,10 @@
     margin-top: 35px;
 }
 
+.hidden{
+    display: none;
+}
+
 .block--center {
     position: absolute;
     left: 50vw;
@@ -11,5 +15,13 @@
     width: 50vw;
     transform: translate(-25vw, -25vh);
     text-align: center;
+}
 
+.scanner{
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    height: 50vh;
+    width: 50vw;
+    transform: translate(-25vw, -25vh);
 }

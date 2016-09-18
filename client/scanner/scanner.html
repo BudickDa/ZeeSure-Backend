@@ -1,6 +1,31 @@
 <template name="scanner">
-    <div class="block--center">
-        <button>Scann your item</button>
-        <div style="border:solid 1px grey;height: 250px;width: 250px"></div>
-    </div>
+    <video class="scanner js-tap" autoplay></video>
+    <canvas class="hidden"></canvas>
+    <img/>
+
+    {{#if name}}
+        <h3>{{name}}</h3>
+        <small>by GoogleVisionAPI</small>
+        <button id="show-dialog" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Apply for insurance
+        </button>
+    {{/if}}
+
+    <dialog class="mdl-dialog">
+        <h4 class="mdl-dialog__title">Do you want to insure {{name}}?</h4>
+        <div class="mdl-dialog__content">
+            <p>{{name}} is worth:</p>
+            <p><strong>{{price}},- EUR</strong></p>
+            <input class="mdl-slider mdl-js-slider js-slider" type="range"
+                   min="{{priceMin}}" max="{{priceMax}}" value="25" tabindex="0">
+            <p>
+                Get this awesome insurance...
+            </p>
+
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button">Agree</button>
+            <button type="button" class="mdl-button close">Disagree</button>
+        </div>
+    </dialog>
 </template>
