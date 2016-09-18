@@ -38,7 +38,7 @@ Template.scanner.onRendered(function () {
 
 
     dialog = document.querySelector('dialog');
-    if (! dialog.showModal) {
+    if (!dialog.showModal) {
         dialogPolyfill.registerDialog(dialog);
     }
 });
@@ -52,7 +52,7 @@ Template.scanner.helpers({
     },
     priceMin(){
         const min = Math.floor(startPrice - 0.5 * startPrice);
-        if(min<0){
+        if (min < 0) {
             return 0;
         }
         return min;
@@ -88,20 +88,20 @@ Template.scanner.events({
                     }
                 ]
             };
-            HTTP.post('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDSJe522U2VYYCz7I1x6qGVnkTmnjhV7jE', {data:json}, function (err, data) {
+            HTTP.post('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDSJe522U2VYYCz7I1x6qGVnkTmnjhV7jE', {data: json}, function (err, data) {
                 if (err) {
                     console.error(err);
                 }
                 const responses = JSON.parse(data.content).responses;
-                if(!_.first(responses)){
+                if (!_.first(responses)) {
                     return;
                 }
-                if(!_.first(responses).labelAnnotations){
+                if (!_.first(responses).labelAnnotations) {
                     return;
                 }
                 const annotations = _.first(_.first(responses).labelAnnotations);
                 const name = annotations.description;
-                Meteor.call('getPriceByName', name, function(err, price){
+                Meteor.call('getPriceByName', name, function (err, price) {
                     reactItemPrice.set(Math.floor(price));
                     startPrice = price;
                 });
@@ -112,5 +112,11 @@ Template.scanner.events({
     'change .js-slider'(event){
         console.log(event.currentTarget.value);
         reactItemPrice.set(event.currentTarget.value);
+    },
+    'click .js-apply'(){
+        Meteor.call('applyForInsurance', parseFloat(reactItemPrice.get()), {
+            name: reactItemName.get(),
+            brand: 'Unknown'
+        }, 12, canvas.toDataURL('image/jpeg'))
     }
 });

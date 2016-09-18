@@ -1,3 +1,33 @@
 <template name="backendLayout">
     {{>Template.dynamic template=content}}
 </template>
+
+<template name="backend">
+    <h4>You have {{count}} insurances to confirm</h4>
+    <table class="mdl-data-table mdl-js-data-table">
+        <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">Brand</th>
+            <th>Date</th>
+            <th class="mdl-data-table__cell--non-numeric">Duration</th>
+            <th>Amount</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each insurance in insurances}}
+            <tr>
+                {{#with insurance}}
+                <td class="mdl-data-table__cell--non-numeric">{{name}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{brand}}</td>
+                <td>{{date}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{>progressBar progress=duration}}</td>
+                <td>{{amount}}</td>
+                <td><a href="#">User</a></td>
+                {{/with}}
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</template>
