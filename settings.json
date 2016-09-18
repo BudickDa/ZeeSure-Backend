@@ -1,0 +1,7 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://insure:AFKk2jjdlhSFdljl32r@ds033046.mlab.com:33046/insure"
+    }
+  }
+}
