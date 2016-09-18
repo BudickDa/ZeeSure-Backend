@@ -19,3 +19,11 @@ Meteor.publish('deniedInsurances', function () {
         deniers: this.userId
     });
 });
+
+Meteor.publish('invest', function () {
+    return Insurances.find({
+        deniers: {$ne: [this.userId]},
+        backers: {$ne: [this.userId]},
+        confirmed: false
+    }, {limit: 1});
+});

@@ -1,6 +1,18 @@
 <template name="invest">
-    <div class="block--center">
-        <button>Scann your item</button>
-        <div style="border:solid 1px grey;height: 250px;width: 250px"></div>
-    </div>
+    {{#each investment in investments}}
+        {{#with investment}}
+            <h2>{{name}}</h2>
+            <small>{{brand}}</small>
+            {{#if image}}
+                <img src="{{image}}" style="width: 100%;height: auto"/>
+            {{/if}}
+        {{/with}}
+        {{#with user}}
+            For: {{name}}
+
+        {{/with}}
+
+    {{else}}
+        No possible investements.
+    {{/each}}
 </template>

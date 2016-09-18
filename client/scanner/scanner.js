@@ -11,7 +11,7 @@ var canvas = null;
 var ctx = null;
 var video = null;
 var dialog = null;
-
+var startPrice = 0;
 
 Template.scanner.onRendered(function () {
     canvas = document.querySelector('canvas');
@@ -51,10 +51,14 @@ Template.scanner.helpers({
         return reactItemPrice.get();
     },
     priceMin(){
-        return parseFloat(reactItemPrice.get()) - parseFloat(reactItemPrice.get()) * 0.5;
+        const min = Math.floor(startPrice - 0.5 * startPrice);
+        if(min<0){
+            return 0;
+        }
+        return min;
     },
     priceMax(){
-        return parseFloat(reactItemPrice.get()) + parseFloat(reactItemPrice.get()) * 0.5;
+        return Math.floor(startPrice + startPrice * 0.5);
     }
 });
 
@@ -99,6 +103,7 @@ Template.scanner.events({
                 const name = annotations.description;
                 Meteor.call('getPriceByName', name, function(err, price){
                     reactItemPrice.set(Math.floor(price));
+                    startPrice = price;
                 });
                 reactItemName.set(name);
             });
