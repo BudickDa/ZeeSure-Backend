@@ -8,6 +8,13 @@ Meteor.publish('myInsurances', function () {
     });
 });
 
+Meteor.publish('unconfirmedInsurances', function () {
+    //todo: check if user works for insurance
+    return Insurances.find({
+        confirmed: false
+    });
+});
+
 Meteor.publish('backedInsurances', function () {
     return Insurances.find({
         backers: this.userId
@@ -19,6 +26,8 @@ Meteor.publish('deniedInsurances', function () {
         deniers: this.userId
     });
 });
+
+
 
 Meteor.publish('invest', function () {
     return Insurances.find({

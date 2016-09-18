@@ -7,12 +7,13 @@ const chance = new Chance(1337);
 Insurances.remove({});
 
 Meteor.users.find().forEach(user => {
-    for (let i = 0; i < 7; i++) {
+    const max = chance.integer({max: 7});
+    for (let i = 0; i < max; i++) {
         let price = chance.euro();
         let word = chance.word()
         Insurances.insert({
             userId: user._id,
-            confirmed: chance.bool(),
+            confirmed: true,
             price: price,
             name: chance.word(),
             brand: word.charAt(0).toUpperCase() + word.slice(1),

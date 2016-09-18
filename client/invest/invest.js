@@ -15,11 +15,8 @@ Template.invest.helpers({
     },
     user(){
         const userId = reactUserId.get();
-        if()
-        return Meteor.users.find({
-            _id: {
-                $ne: Meteor.userId()
-            }
-        });
+        if(userId==='') {
+            return Meteor.users.findOne(userId);
+        }
     }
 });

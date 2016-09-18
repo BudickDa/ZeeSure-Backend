@@ -71,3 +71,14 @@ FlowRouter.route('/settings', {
         BlazeLayout.render('main', {content: 'settings'});
     }
 });
+
+FlowRouter.route('/backend', {
+    triggersEnter: [function(context, redirect) {
+        if(Meteor.userId()===null) {
+            redirect('/login');
+        }
+    }],
+    action: function(params, queryParams) {
+        BlazeLayout.render('backendLayout', {content: 'backend'});
+    }
+});
