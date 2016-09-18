@@ -117,6 +117,9 @@ Template.scanner.events({
         Meteor.call('applyForInsurance', parseFloat(reactItemPrice.get()), {
             name: reactItemName.get(),
             brand: 'Unknown'
-        }, 12, canvas.toDataURL('image/jpeg'))
+        }, 12, canvas.toDataURL('image/jpeg'), function(){
+            reactItemName.set('');
+            dialog.close();
+        });
     }
 });

@@ -20,7 +20,7 @@ Meteor.methods({
         check(product, {
             name: String,
             brand: String,
-            ean: Match.maybe(String)
+            ean: Match.Maybe(String)
         });
         check(month, Number);
         let risk = false;

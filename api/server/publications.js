@@ -11,7 +11,8 @@ Meteor.publish('myInsurances', function () {
 Meteor.publish('unconfirmedInsurances', function () {
     //todo: check if user works for insurance
     return Insurances.find({
-        confirmed: false
+        confirmed: false,
+        userId: {$ne: this.userId},
     });
 });
 
@@ -28,11 +29,8 @@ Meteor.publish('deniedInsurances', function () {
 });
 
 
-
 Meteor.publish('invest', function () {
     return Insurances.find({
-        deniers: {$ne: [this.userId]},
-        backers: {$ne: [this.userId]},
-        confirmed: false
+        userId: this.userId
     }, {limit: 1});
 });

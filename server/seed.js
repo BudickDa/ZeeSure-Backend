@@ -13,7 +13,7 @@ Meteor.users.find().forEach(user => {
         let word = chance.word()
         Insurances.insert({
             userId: user._id,
-            confirmed: true,
+            confirmed: chance.bool(),
             price: price,
             name: chance.word(),
             brand: word.charAt(0).toUpperCase() + word.slice(1),
@@ -22,7 +22,29 @@ Meteor.users.find().forEach(user => {
             backers: [
                 {userId: chance.guid(), price: chance.euro({max: price})}
             ],
-            deniers: []
+            deniers: [
+                user._id
+            ]
         });
     }
 });
+
+
+for (let i = 0; i < 22; i++) {
+    let price = chance.euro();
+    let word = chance.word()
+    Insurances.insert({
+        userId: chance.guid(),
+        confirmed: false,
+        price: price,
+        name: chance.word(),
+        brand: word.charAt(0).toUpperCase() + word.slice(1),
+        ean: chance.guid(),
+        date: chance.date(),
+        backers: [
+            {userId: chance.guid(), price: chance.euro({max: price})}
+        ],
+        deniers: [
+        ]
+    });
+}

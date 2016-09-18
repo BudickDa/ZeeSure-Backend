@@ -2,9 +2,10 @@
     {{#each investment in investments}}
         {{#with investment}}
             <h2>{{name}}</h2>
-            <small>{{brand}}</small>
+            <small>Brand: {{brand}}</small>
+        <br/>
             {{#if image}}
-                <img src="{{image}}" style="width: 100%;height: auto"/>
+                <img src="{{image}}" style="width: 300px;height: auto"/>
             {{/if}}
         {{/with}}
         {{#with user}}
